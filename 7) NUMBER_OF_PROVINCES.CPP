@@ -18,7 +18,7 @@ int numProvinces(vector<vector<int>> adj, int V) {
         for(int j=0 ; j<V ; j++){
             if(adj[i][j] == 1 && i != j){
                 adj1[i].emplace_back(j) ;
-                adj1[j].emplace_back(j) ;
+                adj1[j].emplace_back(i) ;
             }
         }
     }
