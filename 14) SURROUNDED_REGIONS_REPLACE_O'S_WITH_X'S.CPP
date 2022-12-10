@@ -25,26 +25,29 @@ vector<vector<char>> fill(int n, int m, vector<vector<char>> mat)
     vector<vector<char>> ans = mat ;
     int delRow[] = {-1,0,+1,0} ;
     int delCol[] = {0,+1,0,-1} ;
+    
+    // TRAVERSING FIRST ROW AND LAST ROW
     for(int i=0 ; i<m ; i++){
         if(mat[0][i] == 'O' && !vis[0][i]){
             dfs(0,i,vis,mat,delRow,delCol,n,m) ;
         }
-    }
-    for(int i=0 ; i<n ; i++){
-        if(mat[i][0] == 'O' && !vis[i][0]){
-            dfs(i,0,vis,mat,delRow,delCol,n,m) ;
-        }
-    }
-    for(int i=0 ; i<m ; i++){
+
         if(mat[n-1][i] == 'O' && !vis[n-1][i]){
             dfs(n-1,i,vis,mat,delRow,delCol,n,m) ;
         }
     }
+    
+    // TRAVERSING FIRST COLUMN ANS LAST COLUMN
     for(int i=0 ; i<n ; i++){
+        if(mat[i][0] == 'O' && !vis[i][0]){
+            dfs(i,0,vis,mat,delRow,delCol,n,m) ;
+        }
+        
         if(mat[i][m-1] == 'O' && !vis[i][m-1]){
             dfs(i,m-1,vis,mat,delRow,delCol,n,m) ;
         }
     }
+
     for(int i=0 ; i<n ; i++){
         for(int j=0 ; j<m ; j++){
             if(mat[i][j] == 'O' && vis[i][j] == 0) ans[i][j] = 'X' ;
