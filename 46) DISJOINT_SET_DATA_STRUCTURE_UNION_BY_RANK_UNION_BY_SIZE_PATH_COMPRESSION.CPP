@@ -45,22 +45,22 @@ public:
         }
     }
 
-void unionBySize(int u,int v){
-    int ulp_u = findUPar(u) ;
-    int ulp_v = findUPar(v) ;
-    // IF ULTIMATE PARENT OF U EQUALS TO THE ULTIMATE PARENT OF V
-    // THIS MEANS THEY ARE BELONGING TO THE SAME COMPONENT
-    if(ulp_u == ulp_v) return ; 
-    // ELSE NOW DOING COMPRESSION OF SIZE 
-    if(rank[ulp_u] < rank[ulp_v]){
-        parent[ulp_u] = ulp_v ; 
-        size[ulp_v] += size[ulp_u] ;
+    void unionBySize(int u,int v){
+        int ulp_u = findUPar(u) ;
+        int ulp_v = findUPar(v) ;
+        // IF ULTIMATE PARENT OF U EQUALS TO THE ULTIMATE PARENT OF V
+        // THIS MEANS THEY ARE BELONGING TO THE SAME COMPONENT
+        if(ulp_u == ulp_v) return ; 
+        // ELSE NOW DOING COMPRESSION OF SIZE 
+        if(rank[ulp_u] < rank[ulp_v]){
+            parent[ulp_u] = ulp_v ; 
+            size[ulp_v] += size[ulp_u] ;
+        }
+        else{
+            parent[ulp_v] = ulp_u ; 
+            size[ulp_u] += size[ulp_v] ;        
+        }
     }
-    else{
-        parent[ulp_v] = ulp_u ; 
-        size[ulp_u] += size[ulp_v] ;        
-    }
-}
 
 };
 
